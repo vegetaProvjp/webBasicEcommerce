@@ -1,0 +1,141 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<div class="grid container bootstrap snippet mt-5">
+    <div class="main-body">
+
+        <div class="row row bg-light p-3">
+            <div class="col-md-4">
+                <!--left col-->
+                <div class="text-center center">
+                    {{!-- <img src="/upload/avatar/{{user.avatar}}" class="avatar img-circle img-thumbnail mb-3"
+                        alt="avatar" width="100" height="100"> --}}
+                    <img class=" img-circle " src="/upload/avatar/{{user.avatar}}" width="150" height="150" alt="">
+                    <h2 class="mt-3" style="font-size: 15px;">Choose other avatar</h2>
+                    <form class="mt-3" action="/user/profile/updateAvatar" method="POST" encType="multipart/form-data">
+                        <input type="file" style="font-size: 13px" class="text-center center-block file-upload"
+                            name="avatar">
+                        <button class="btn btn-primary mt-4" type="submit">Save</button>
+                    </form>
+                </div>
+                </hr><br>
+
+
+            </div>
+            <!--/col-3-->
+            <div class="col-md-8">
+                <h4 class="success text-success mb-3" style="display: none;">Update successfully</h4>
+                <h4 class="error text-danger mb-3" style="display: none;">Update failed</h4>
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="nav-item"><a data-toggle="tab" class="nav-link active" role="tab" href="#profile">My profile</a></li>
+                    <li class="nav-item"><a data-toggle="tab" class="nav-link" role="tab" href="#passwordtab">Change password</a></li>
+                </ul>
+
+                <div class="tab-content mt-3">
+                    <div class="tab-pane fade active show" role="tabpanel" id="profile">
+                        <form class="form" id="form-info">
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="full_name">
+                                        <h5>Full name </h5>
+                                    </label>
+                                    <input type="text" value="{{user.fullName}}" class="form-control" name="fullname"
+                                        id="fullName" placeholder="Enter your full name" title="Enter your full name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="phone">
+                                        <h5>Phone number</h5>
+                                    </label>
+                                    <input type="text" class="form-control" name="phone" id="phone"
+                                        placeholder="Enter your phone number"
+                                        title="Enter your phone number" value="{{user.phone}}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-12">
+                                    <label for="email">
+                                        <h5>Email:</h5>
+                                    </label>
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        value="{{user.email}}" placeholder="Enter your email"
+                                        title="Enter your email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <label for="address">
+                                        <h5>Address:</h5>
+                                    </label>
+                                    <input type="text" class="form-control" name="address" id="address"
+                                        value="{{user.address}}" placeholder="Enter your address"
+                                        title="Enter your address">
+                                </div>
+                            </div>
+                            <button class="btn btn-primary mt-5" type="submit">Save</button>
+                        </form>
+
+                    </div>
+                    <!--/tab-pane-->
+                    <div class="tab-pane fade" role="tabpanel" id="passwordtab">
+                        <form class="form" id="form-password">
+                            <div class="form-group">
+
+                                <div class="col-xs-12">
+                                    <label for="password">
+                                        <h5>New password</h5>
+                                    </label>
+                                    <input type="password" class="form-control" name="password" id="password"
+                                        placeholder="Enter your new password" title="Nhập vào mật khẩu mới.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-12">
+                                    <label for="password2">
+                                        <h5>Confirm Password</h5>
+                                    </label>
+                                    <input type="password" class="form-control" name="password2" id="password2"
+                                        placeholder="Confirm your new password" title="Confirm your new password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn-lg btn-success pull-right" type="submit"><i
+                                            class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    $(document).on('click', '.btn-ur-product', (e) => {
+        let el = e.target;
+        let data = $(el).attr('data');
+        let data_url = $(el).attr('data-url');
+        $('.completed').val(data);
+        $('.data-url').val(data_url);
+        $('#formUrProduct').attr('action', data_url);
+        $('#formUrProduct')[0].submit();
+    });
+
+    $(document).on('click', '.btn-ur-deal', (e) => {
+        let el = e.target;
+        let data = $(el).attr('data');
+        let data_url = $(el).attr('data-url');
+        $('.type').val(data);
+        $('.data-url').val(data_url);
+        $('#formUrDeal').attr('action', data_url);
+        $('#formUrDeal')[0].submit();
+    });
+</script>
+<script src="/js/user-profile.js"></script>

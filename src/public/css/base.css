@@ -1,0 +1,58 @@
+:root {
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #504a4a;
+    --border-color: #dbdbdb;
+    --line-color: #bbbaba;
+}
+
+
+body {
+    background-color: #ffffff;
+}
+
+* {
+    box-sizing: inherit;    
+}
+
+html {
+    font-size: 12px;
+    line-height: 1.6rem;
+    font-family: 'Mulish', sans-serif;
+    box-sizing: border-box;
+}
+
+.grid {
+    width: 950px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.grid__row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -5px;
+    margin-right: -5px;
+    width: 100%;
+}
+
+.grid__column {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 25%;
+}
+
+a {
+    text-decoration: none;
+    
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

@@ -1,0 +1,132 @@
+.header {
+    font-weight: 300;
+}
+
+.header a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.header__logo {
+    margin-top: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+
+}
+
+.header__slogan_1 {
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.header__slogan_2 {
+    font-weight: 100;
+    font-size: 1.6rem;
+}
+
+.header__navbar-list {
+    margin: 30px 0 50px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-around;
+    border-top: 1.2px solid var(--line-color);
+    border-bottom: 1.2px solid var(--line-color);
+    align-items: center;
+}
+
+.header__navbar-item {
+    color: var(--text-color);
+
+}
+
+.header__navbar-item__cart {
+    position: relative;
+    cursor: pointer;
+}
+
+.header__navbar-item-icon__absolute {
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    font-size: 0.8rem;
+    color: var(--white-color);
+}
+
+.header__navbar-item__login {
+    z-index: 2;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.header__navbar-item__login::before {
+    content: "";
+    position: absolute;
+    border-left: 1.2px solid var(--line-color);
+    height: 28px;
+    top: -4px;
+    left: -44px;
+}
+
+.header__navbar-item__login::after {
+    content: "";
+    position: absolute;
+    border-left: 1.2px solid var(--line-color);
+    height: 30px;
+    top: -4px;
+    right: -44px;
+}
+
+.header__login-text {
+    margin-left: 10px;
+}
+
+.header__login-icon {
+    color: rgb(89, 89, 89);
+}
+
+.header__navbar-item-cart {
+
+    font-size: 1rem;
+}
+
+.header__navbar-item-text {
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.header__navbar-item-text:hover {
+    color: #AEAEAE;
+}
+
+.header__search {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+
+}
+
+/* Search box */
+.header__search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header__search-input {
+    width: 450px;
+    height: 40px;
+    outline: none;
+    font-size: 1.2rem;
+    color: var(--text-color);
+    padding: 0 22px;
+    border: 1px solid rgb(116, 116, 116);
+}
+
+
+::placeholder {
+    color: deeppink;
+}

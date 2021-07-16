@@ -1,0 +1,145 @@
+<link rel="stylesheet" href="/bootstrap/bootstrap.min3.7.css">
+<link rel="stylesheet" href="/bootstrap/bootstrap.min4.0.css">
+<link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="/bootstrap/bootstrap.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<div class="container bootstrap snippet " style="margin-top: 100px;">
+    <div class="main-body grid">
+        <p class="text-right">
+            <a href="/admin/logout">Logout</a>
+        </p>
+        <div class="row">
+            <div class="col-md-3 grid">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Product
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="list-group list-group-flush">
+                                    <a href="/admin/list" style="cursor: pointer;" class="list-group-item">List
+                                        Product</a>
+                                    <a href="/admin/create" style="cursor: pointer;" class="list-group-item">Create
+                                        Product</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Order
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="list-group list-group-flush">
+                                <a href="/admin/order" style="cursor: pointer;" class="list-group-item">List Order</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="">
+                    {{#each order }}
+                    <div style="border: 2px solid rgb(67, 128, 185);" class="panel panel-default">
+                        <div class="panel-footer">
+                            <strong>Address: {{ this.address }}</strong>
+                            {{#if isDelivered}}
+                            <p class="float-right">You delivered this order to the customer</p>
+                            {{else}}
+                            <a href="" class="btn btn-link float-right" data-toggle="modal" data-id="{{this._id}}"
+                                data-target="#deliverModal">Delivered?</a>
+                            {{/if}}
+                        </div>
+                        <div class="panel-footer">
+                            {{!-- <strong>Name: {{ this.user.fullName}}</strong> --}}
+                            <strong>Name: {{ this.name}}</strong>
+
+                        </div>
+                        <div class="panel-footer">
+                            <strong>Time Order: {{ this.createdAt}}</strong>
+
+                        </div>
+                        <div class="panel-footer">
+                            <strong>Phone Number: {{ this.user.phone }}</strong>
+                        </div>
+                        <div class="panel-body">
+                            <ul class="list-group">
+                                {{#each this.cart.items }}
+                                <li class="list-group-item">
+                                    <span class="badge">{{ this.price }}</span> {{ this.item.name }} | {{this.qty }}
+                                    units
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            <strong>Total Price: {{ this.cart.totalPrice}}</strong>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- Modal -->
+<div class="modal fade" id="deliverModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Do you delivered this ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" id="btnDeliverConfirm">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="POST" name="deliver-form"></form>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var deliverForm = document.forms['deliver-form'];
+        var orderId;
+        var btnDeliver = document.getElementById('btnDeliverConfirm');
+        $('#deliverModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            orderId = button.data('id') // Extract info from data-* attributes
+        })
+
+        btnDeliver.onclick = function () {
+            deliverForm.action = '/admin/order/' + orderId + '?_method=PUT';
+            deliverForm.submit();
+        }
+    });
+
+</script>

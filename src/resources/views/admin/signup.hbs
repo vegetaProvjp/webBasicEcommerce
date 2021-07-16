@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/reset.css">
+
+<div class="log">
+    <h2 class="log-form__heading">Sign up</h2>
+    <p class="log-form__member">All ready a member?
+        <a href="/admin/login" class="log-form__member-log">Log In</a>
+    </p>
+    <form method="POST" action="/admin/signup" enctype="multipart/form-data">
+        <div class="row">
+            {{#if data.success}}
+            <div class="col-md-12 text-success" style="font-size: 14px;">{{data.success}}</div>
+            <div class="col-md-12 mb-4" style="font-size: 14px;"><a href="/admin/login">Back to login page</a></div>
+            {{/if}}
+            {{#if data.error}}
+            <div class="col-md-12 text-danger" style="font-size: 14px;">{{data.error}}</div>
+            {{/if}}
+        </div>
+        <input class=" log-form__item" type="text" name="username" id="username" placeholder="Username" />
+        <input class="log-form__item" type="password" name="password" id="password" placeholder="Password" />
+        <input class="log-form__item" type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" />
+        <input class="log-form__item" type="text" name="fullName" id="fullName" placeholder="Full Name" />
+        <input class="log-form__item" type="email" name="email" id="email" placeholder="Email" />
+        <input class="log-form__item" type="text" name="phone" id="phone" placeholder="Phone Number" />
+        <input class="log-form__item" type="file" id="avatar" name="avatar"/>
+        <textarea name="address" class="log-form__item" placeholder="Address"
+            onkeyup="adjust_textarea(this)"></textarea>
+        <input class="log-form__button" type="submit" value="Sign up" />
+    </form>
+</div>

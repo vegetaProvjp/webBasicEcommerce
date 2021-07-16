@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/base.css">
+<link rel="stylesheet" href="/css/reset.css">
+
+<div class="log">
+    <h2 class="log-form__heading">Log in</h2>
+    <p class="log-form__member">New to this site?
+        <a href="/user/signup" class="log-form__member-log">Sign up</a>
+    </p>
+    <p class="log-form__member">
+        <a href="/admin/login" class="log-form__member-log" style="text-decoration: underline;">Login as admin</a>
+    </p>
+    <form action="/user/login" method="POST">
+        <input class=" log-form__item" type="username" name="username" placeholder="Username" />
+        <input class="log-form__item" type="password" name="password" placeholder="Password" />
+        <input class="log-form__button" type="submit" value="Log in" />
+    </form>
+</div>

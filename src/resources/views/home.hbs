@@ -1,0 +1,107 @@
+<div class="main">
+    <div class="grid">
+        <div class="slider">
+            <div class="slider-box">
+                <div class="slider-box__wrap">
+                    <h1 class="slider-box__header slider-box__text">BEST WATCH</h1>
+                    <p class="slider-box__content slider-box__text">Lorem ipsum dolor sit amet consectetur
+                        adipisicing elit. Quam a modi facere cupiditate consectetur cum sunt qui rerum, repellat
+                        hic sed! Nobis nemo accusantium adipisci. Quibusdam sint similique ea iste!</p>
+                </div>
+            </div>
+            <div class="slides">
+                <!--radio buttons-->
+                <input type="radio" name="radio-btn" id="radio1">
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
+
+                <!--slide images-->
+                <div class="slide first">
+                    <img src="image/img_sl4.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="image/img_sl2.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="image/img_sl3.jpg" alt="">
+                </div>
+                <div class="slide">
+                    <img src="image/img_sl4.jpg" alt="">
+                </div>
+                <!--slide images end-->
+                <!--automatic navigation-->
+                <div class="navigation-auto">
+                    <div class="auto-btn1"></div>
+                    <div class="auto-btn2"></div>
+                    <div class="auto-btn3"></div>
+                    <div class="auto-btn4"></div>
+                </div>
+
+            </div>
+            <!--manual navigation -->
+            <div class="navigation-manual">
+                <label for="radio1" class="manual-btn"></label>
+                <label for="radio2" class="manual-btn"></label>
+                <label for="radio3" class="manual-btn"></label>
+                <label for="radio4" class="manual-btn"></label>
+            </div>
+
+        </div>
+
+
+        <div class="main-watch-list">
+            <div class="grid__row">
+                {{#each product}}
+                <div class="grid__column">
+                    <!-- Product-item -->
+
+                    <a class="main-watch-item" href="/product/detail/{{this.slug}}">
+                        <div class="main-watch__img" style="background-image: url(upload/imageProduct/{{this.image}});">
+                        </div>
+                        
+                        <div class="main-watch-detail">
+                            <div class="main-watch-detail__info">
+                                <div class="main-watch-detail__name">
+                                    <span>{{this.name}}</span>
+                                </div>
+                                <div class="main-watch-detail__price">
+                                    <span>{{this.price}}</span>
+                                </div>
+                            </div>
+                            <div class="main-watch-detail__view">
+                                <button class="main-watch-detail__view-button"> View Detail</button>
+                            </div>
+                        </div>
+                    </a>
+
+                </div>
+                {{/each}}
+                {{!-- <ul class="pagination justify-content-center mt-5">
+                    <li class="page-item"><button class="page-link" {{{checkPrev 1}}}
+                            action-type="sub">Previous</button></li>
+                    <li class="page-item"><button class="page-link" {{{checkNext product.length}}}
+                            action-type="add">Next</button>
+                    </li>
+                </ul> --}}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var counter = 1;
+    setInterval(function () {
+        document.getElementById('radio' + counter).checked = true;
+        counter++;
+        if (counter > 4) {
+            counter = 1;
+        }
+    }, 3000);
+
+    //auto expand textarea
+    function adjust_textarea(h) {
+        h.style.height = "20px";
+        h.style.height = (h.scrollHeight) + "px";
+    }
+</script>

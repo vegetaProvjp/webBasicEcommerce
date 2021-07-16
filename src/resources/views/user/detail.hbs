@@ -1,0 +1,75 @@
+<link rel="stylesheet" href="/css/userDetail.css">
+
+<div class="container">
+    <div class="main-body ">
+        <div class="row">
+            <div class="col-lg-4 ">
+                <div class="card card-left">
+                    <div class="card-body">
+                        <div
+                            class="d-flex flex-column align-items-center text-center width:110px;height:110px;overflow:hidden">
+                            <img src="/upload/avatar/{{user.avatar}}" alt="Admin"
+                                class="avatar-round rounded-circle p-1  mx-auto d-block">
+                            <div class="mt-3">
+                                <h4>{{user.email}}</h4>
+                                <p class="text-muted font-size-sm">{{user.fullName}}</p>
+                            </div>
+                        </div>
+                        <hr class="my-3">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8   ">
+                <div class="card card-right">
+                    <h4 class="success text-success mb-3" style="display: none;">Cập nhật thành công</h4>
+                    {{!-- <form id="form-info"> --}}
+                    <form>
+                        <div class="card-body padding">
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Full Name</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="name" class="form-control" id="fullName" value="{{user.fullName}}">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Email</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="email" class="form-control" id="email" value="{{user.email}}">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Phone Number</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="text" class="form-control" id="phone" value="{{user.phone}}">
+                                </div>
+                            </div>
+                            <div class="row mb-3">
+                                <div class="col-sm-3">
+                                    <h6 class="mb-0">Address</h6>
+                                </div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="address" class="form-control" id="address" value="{{user.address}}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-9 text-secondary">
+                                    <input type="submit" class="btn btn-primary px-4" value="Save Changes">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/user-profile.js"></script>

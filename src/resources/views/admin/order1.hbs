@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="/bootstrap/bootstrap.min3.7.css">
+{{!--
+<link rel="stylesheet" href="/bootstrap/bootstrap.min.css"> --}}
+<link rel="stylesheet" href="/bootstrap/bootstrap.min4.0.css">
+<!-- Latest compiled and minified JavaScript -->
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        {{#each order }}
+        <div style="border: 2px solid rgb(67, 128, 185);" class="panel panel-default">
+            <div class="panel-footer">
+                <strong>Address: {{ this.address }}</strong>
+                {{#if isDelivered}}
+                <p class="float-right">You delivered this order to the customer</p>
+                {{else}}
+                <a href="" class="btn btn-link float-right" data-toggle="modal"
+                    data-id="{{this._id}}" data-target="#deliverModal">Delivered?</a>
+                {{/if}}
+            </div>
+            <div class="panel-footer">
+                <strong>Name: {{ this.user.fullName}}</strong>
+
+            </div>
+            <div class="panel-footer">
+                <strong>Time Order: {{ this.createdAt}}</strong>
+
+            </div>
+            <div class="panel-footer">
+                <strong>Phone Number: {{ this.user.phone }}</strong>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    {{#each this.cart.items }}
+                    <li class="list-group-item">
+                        <span class="badge">{{ this.price }}</span> {{ this.item.name }} | {{this.qty }} units
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="panel-footer">
+                <strong>Total Price: {{ this.cart.totalPrice}}</strong>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="deliverModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Do you delivered this ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                <button type="button" class="btn btn-primary" id="btnDeliverConfirm">Yes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form method="POST" name="deliver-form"></form>
+
+<script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var deliverForm = document.forms['deliver-form'];
+        var orderId;
+        var btnDeliver = document.getElementById('btnDeliverConfirm');
+        $('#deliverModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            orderId = button.data('id') // Extract info from data-* attributes
+        })
+
+        btnDeliver.onclick = function () {
+            deliverForm.action = '/admin/order/' + orderId + '?_method=PUT';
+            deliverForm.submit();
+        }
+    });
+
+</script>

@@ -1,0 +1,145 @@
+<link rel="stylesheet" href="/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="/css/create-product.css" />
+
+<div class="container bootstrap snippet " style="margin-top: 100px;">
+    <div class="main-body grid">
+
+        <p class="text-right">
+            <a href="/admin/logout">Logout</a>
+        </p>
+        <div class="row">
+            <div class="col-md-3 grid">
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Product
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <div class="list-group list-group-flush">
+                                    <a href="/admin/list" style="cursor: pointer;" class="list-group-item">List
+                                        Product</a>
+                                    <a href="/admin/create" style="cursor: pointer;" class="list-group-item">Create
+                                        Product</a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Order
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                        data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <div class="list-group list-group-flush">
+                                <a href="/admin/order" style="cursor: pointer;" class="list-group-item">List Order</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9  grid">
+                <div class="wrapper wrapper--w900">
+                    <div class="card card-6" style="border: none;">
+                        <div class="card-body">
+                            {{#if data.success}}
+                            <div class="text-success text-center" style="font-size: 24px;">{{data.success}}</div>
+                            {{/if}}
+                            {{#if data.error}}
+                            <div class="text-danger text-center" style="font-size: 24px;">{{data.error}}</div>
+                            {{/if}}
+                            <form action="/admin/create" method="POST" class="form-create" id="form-create"
+                                enctype="multipart/form-data">
+                                <div class="form-row">
+                                    <div class="name">Name</div>
+                                    <div class="value">
+                                        <input class="input--style-6" type="text" name="name">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Price</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input class="input--style-6" type="text" name="price">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Image</div>
+                                    <div class="value" style="position: relative;">
+                                        <input class="log-form__item" type="file" id="image" name="image" />
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Quantity</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input type="number" class="input--style-6" name="quantity" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Title</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <input type="text" class="input--style-6" name="title" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="name">Description</div>
+                                    <div class="value">
+                                        <div class="input-group">
+                                            <textarea class="textarea--style-6" name="description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer d-flex justify-content-center">
+                            <button class="btn btn--radius-2 btn--blue-2 btn-submit" type="submit">Add Product</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--/row-->
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/bootstrap/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('form input[type="file"]').change(function () {
+            $('.label-img').text(this.files.length + " file(s) selected");
+        });
+    });
+    $(document).on('click', '.btn-submit', () => {
+        $('.form-create')[0].submit();
+    })
+
+    //sự kiện submit
+    $(document).on('submit', '#form-create', (e) => {
+        e.preventDefault();
+        var input = document.getElementById('image');
+        if (input.files.length > 5) {
+            alert('File upload');
+        }
+        else if (input.files.length == 0) {
+            alert("Choose image's product");
+        }
+        else {
+            $('#form-create')[0].submit();
+        }
+    })
+</script>

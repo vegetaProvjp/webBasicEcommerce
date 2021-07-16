@@ -1,0 +1,38 @@
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="/bootstrap/bootstrap.min3.7.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+<div class="row">
+    <div class="col-md-8 col-md-offset-2">
+        {{#each orders }}
+        <div class="panel panel-default">
+            <div class="panel-footer">
+                <strong>Total price: {{ this.cart.totalPrice }}</strong>
+                {{#if isDelivered}}
+                <p class="float-right">Your item has been delivered</p>
+                {{else}}
+                <p class="float-right">Processing</p>
+                {{/if}}
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <p>{{this.totalQty}}</p>
+                    {{#each this.items }}
+                    <li class="list-group-item">
+                        <span class="badge">{{ this.price }}</span> {{ this.item.name }} | {{this.qty }} units
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+
+        </div>
+        {{/each}}
+    </div>
+</div>
