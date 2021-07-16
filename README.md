@@ -1,2 +1,2 @@
-#1. Install
+# 1: INSTALL
   npm i
