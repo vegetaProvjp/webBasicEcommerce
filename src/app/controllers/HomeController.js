@@ -14,6 +14,10 @@ class HomeController {
         })
         .catch(next);
     }
+
+    search(req, res, next) {
+        
+    }
 }
 
 module.exports = new HomeController();
